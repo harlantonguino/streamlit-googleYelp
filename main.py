@@ -2,6 +2,7 @@
 # importar librerias
 import numpy as np
 import pandas as pd
+import random
 
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -41,12 +42,17 @@ from sklearn.metrics import accuracy_score
 print('Exactitud:', accuracy_score(y_test, pred_test))
 
 # test
+
+if st.button('Test'):
+    st.write('<seleccion review aleatoria>')
+    index = X_test.index[random.randint(0, 11859)]
+
 index = X_test.index[897]
 review = df['review processed'][index]
 st.write('review a evaluar: ', review)
 
 result = clf_model.predict([review])[0]
 if result == 0:
-    st.write('### Resultado de la Clasificacion: ', '## Conocedor')
+    st.write('### Resultado de la Clasificacion: Conocedor')
 else:
-    st.write('### Resultado de la Clasificacion: ', '## Consumidor Casual')
+    st.write('### Resultado de la Clasificacion: Consumidor Casual')
