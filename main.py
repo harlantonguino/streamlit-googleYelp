@@ -9,6 +9,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 
+import streamlit as st
+
+st.write("""
+# Deploy Modelo de Clasificacion 
+sklearn LinearSVC
+""")
+
 # get data
 df = pd.read_parquet('Cluster_result.parquet')
 
@@ -36,8 +43,11 @@ print('Exactitud:', accuracy_score(y_test, pred_test))
 # test
 index = X_test.index[897]
 review = df['review processed'][index]
+st.write('review a evaluar >>>')
+st.write(review)
+
 result = clf_model.predict([review])[0]
 if result == 0:
-    print('Review Conocedor')
+    st.write('# Resultado de la Clasificacion: Conocedor')
 else:
-    print('Review Consumidor Casual')
+    st.write('# Resultado de la Clasificacion: Consumidor Casual')
