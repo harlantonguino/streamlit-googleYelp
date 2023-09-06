@@ -18,7 +18,8 @@ st.write("""
 """)
 
 # get data
-df = pd.read_parquet('Cluster_result.parquet')
+#df = pd.read_parquet('Cluster_result.parquet')
+df = pd.read_parquet('Cluster_CountVectorizer_KMeans.parquet')
 
 # Seleccionar variables predictoras X - variable a predecir y
 X = df['review processed']
