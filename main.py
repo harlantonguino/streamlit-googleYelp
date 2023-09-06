@@ -46,20 +46,21 @@ st.write("""
 
 
 """)
-st.write('preiona test y selecciona una review aleatoria a evaluar')
+st.write('preiona TEST y selecciona una review aleatoria a evaluar')
 
 if st.button('Test'):
     index = X_test.index[random.randint(0, 11859)]
     review = df['review processed'][index]
     st.write(' ')
-    st.write('### review a evaluar: ')
+    st.write('#### review a evaluar: ')
     st.write(review)
 
     result = clf_model.predict([review])[0]
 
+    st.write(' ')
     if result == 0:
-        st.write('Resultado de la Clasificacion:')
-        st.write('### Conocedor')
+        st.write('### Resultado de la Clasificacion:')
+        st.write('## Conocedor')
     else:
-        st.write('Resultado de la Clasificacion:')
-        st.write('### Consumidor Casual')
+        st.write('### Resultado de la Clasificacion:')
+        st.write('## Consumidor Casual')
