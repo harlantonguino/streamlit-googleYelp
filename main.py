@@ -45,8 +45,9 @@ print('Exactitud:', accuracy_score(y_test, pred_test))
 st.write("""
 
 
+
 """)
-st.write('preiona TEST y selecciona una review aleatoria a evaluar')
+st.write('Preiona TEST y selecciona una review aleatoria a evaluar')
 
 if st.button('Test'):
     index = X_test.index[random.randint(0, 11859)]
@@ -57,7 +58,11 @@ if st.button('Test'):
 
     result = clf_model.predict([review])[0]
 
-    st.write(' ')
+    st.write("""
+
+
+
+    """)
     if result == 0:
         st.write('### Resultado de la Clasificacion:')
         st.write('## Conocedor')
