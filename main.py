@@ -42,16 +42,24 @@ from sklearn.metrics import accuracy_score
 print('Exactitud:', accuracy_score(y_test, pred_test))
 
 # test
+st.write("""
+
+
+""")
+st.write('preiona test y selecciona una review aleatoria a evaluar')
 
 if st.button('Test'):
-    st.write('<seleccion review aleatoria>')
     index = X_test.index[random.randint(0, 11859)]
-
     review = df['review processed'][index]
-    st.write('review a evaluar: ', review)
+    st.write(' ')
+    st.write('### review a evaluar: ')
+    st.write(review)
 
     result = clf_model.predict([review])[0]
+
     if result == 0:
-        st.write('### Resultado de la Clasificacion: Conocedor')
+        st.write('Resultado de la Clasificacion:')
+        st.write('### Conocedor')
     else:
-        st.write('### Resultado de la Clasificacion: Consumidor Casual')
+        st.write('Resultado de la Clasificacion:')
+        st.write('### Consumidor Casual')
