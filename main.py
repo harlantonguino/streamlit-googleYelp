@@ -13,7 +13,7 @@ import streamlit as st
 
 st.write("""
 # Deploy Modelo de Clasificacion 
-sklearn LinearSVC
+## sklearn LinearSVC
 """)
 
 # get data
@@ -43,11 +43,10 @@ print('Exactitud:', accuracy_score(y_test, pred_test))
 # test
 index = X_test.index[897]
 review = df['review processed'][index]
-st.write('review a evaluar >>>')
-st.write(review)
+st.write('review a evaluar: ', review)
 
 result = clf_model.predict([review])[0]
 if result == 0:
-    st.write('# Resultado de la Clasificacion: Conocedor')
+    st.write('### Resultado de la Clasificacion: ', '## Conocedor')
 else:
-    st.write('# Resultado de la Clasificacion: Consumidor Casual')
+    st.write('### Resultado de la Clasificacion: ', '## Consumidor Casual')
