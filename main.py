@@ -52,7 +52,7 @@ st.write('Preiona TEST y selecciona una review aleatoria a evaluar')
 
 if st.button('Test'):
     index = X_test.index[random.randint(0, 11859)]
-    review = df['review processed'][index]
+    review = df['review'][index]
     st.write(' ')
     st.write('#### review a evaluar: ')
     st.write(review)
