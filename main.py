@@ -18,7 +18,6 @@ st.write("""
 """)
 
 # get data
-#df = pd.read_parquet('Cluster_result.parquet')
 df = pd.read_parquet('Cluster_CountVectorizer_KMeans.parquet')
 
 # Seleccionar variables predictoras X - variable a predecir y
@@ -48,16 +47,17 @@ st.write("""
 
 
 """)
-st.write('Preiona TEST y selecciona una review aleatoria a evaluar')
+st.write('Presiona TEST y selecciona una review aleatoria a evaluar entre los datos del set de prueba')
 
 if st.button('Test'):
-    index = X_test.index[random.randint(0, 11859)]
+    index = X_test.index[random.randint(0, len(X_test))]
     review = df['review'][index]
     st.write(' ')
     st.write('#### review a evaluar: ')
     st.write(review)
 
-    result = clf_model.predict([review])[0]
+    review_processed = X_test[index]
+    result = clf_model.predict([review_processed])[0]
 
     st.write("""
 
