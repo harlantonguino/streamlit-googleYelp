@@ -8,8 +8,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
-from sklearn.metrics import accuracy_score
-
 import streamlit as st
 
 st.write("""
@@ -20,7 +18,7 @@ st.write("""
 # get data
 df = pd.read_parquet('Cluster_CountVectorizer_KMeans.parquet')
 
-# Seleccionar variables predictoras X - variable a predecir y
+# Ssleccionar variable predictora X - variable a predecir y
 X = df['review processed']
 y = df['cluster']
 
@@ -29,44 +27,67 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 # pipeline
 from sklearn.pipeline import Pipeline
-clf_model = Pipeline([('tfidf_v', TfidfVectorizer(ngram_range=(1, 1))), ('clf_m', LinearSVC(C=2, loss='squared_hinge'))])
+clf_model = Pipeline([('tfidf_v', TfidfVectorizer(ngram_range=(1, 2))), ('clf_m', LinearSVC(C=1.5, loss='hinge'))])
 
 # entrenar modelo
 clf_model.fit(X_train, y_train)
 
-# evaluar modelo
-pred_test = clf_model.predict(X_test)
+# seleccionar modo 
+modo = st.selectbox(
+    'Como quieres probar el modelo?',
+    ('Seleccionar review de forma aleatoria', 'Ingresar review de forma manual'))
 
-from sklearn.metrics import accuracy_score
+if modo == 'Seleccionar review de forma aleatoria':
 
-print('Exactitud:', accuracy_score(y_test, pred_test))
-
-# test
-st.write("""
-
-
-
-""")
-st.write('Presiona TEST y selecciona una review aleatoria a evaluar entre los datos del set de prueba')
-
-if st.button('Test'):
-    index = X_test.index[random.randint(0, len(X_test))]
-    review = df['review'][index]
-    st.write(' ')
-    st.write('#### review a evaluar: ')
-    st.write(review)
-
-    review_processed = X_test[index]
-    result = clf_model.predict([review_processed])[0]
-
+    # testA
     st.write("""
 
 
 
     """)
-    if result == 0:
-        st.write('### Resultado de la Clasificacion:')
-        st.write('## Conocedor')
-    else:
-        st.write('### Resultado de la Clasificacion:')
-        st.write('## Consumidor Casual')
+
+    st.write('Presiona TEST y selecciona una review aleatoria a evaluar entre los datos del set de prueba')
+
+    button_test = st.button('Test')
+
+    if button_test:
+
+        index = X_test.index[random.randint(0, len(X_test))]
+        review = df['review'][index]
+        review_processed = X_test[index]
+
+        st.write(' ')
+        st.write('#### review:')
+        st.write(review)
+        
+        result = clf_model.predict([review_processed])[0]
+
+else:
+
+    # testB
+    st.write("""
+
+
+
+    """)
+
+    input_review = st.text_input('Ingresa la review a evaluar 👇')
+
+    if input_review:
+        st.write('#### review:')
+        st.write(input_review)
+
+        result = clf_model.predict([input_review])[0]
+
+st.write("""
+
+
+
+""")
+
+if result == 0:
+    st.write('### Resultado de la Clasificacion:')
+    st.write('## Conocedor')
+else:
+    st.write('### Resultado de la Clasificacion:')
+    st.write('## Consumidor Casual')
