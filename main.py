@@ -88,6 +88,8 @@ st.write("""
 if result == 0:
     st.write('### Resultado de la Clasificacion:')
     st.write('## Conocedor')
-else:
+elif result == 1:
     st.write('### Resultado de la Clasificacion:')
     st.write('## Consumidor Casual')
+else:
+    st.write(' ')
