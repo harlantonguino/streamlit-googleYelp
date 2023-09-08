@@ -32,6 +32,9 @@ clf_model = Pipeline([('tfidf_v', TfidfVectorizer(ngram_range=(1, 2))), ('clf_m'
 # entrenar modelo
 clf_model.fit(X_train, y_train)
 
+# inicializar resultado a vacio
+result = 2 
+
 # seleccionar modo 
 modo = st.selectbox(
     'Como quieres probar el modelo?',
