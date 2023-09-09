@@ -102,3 +102,5 @@ elif result == 1:
     st.write('## Consumidor Casual')
 else:
     st.write(' ')
+
+#print(clf_model.predict(['citrus flavors'])[0])
