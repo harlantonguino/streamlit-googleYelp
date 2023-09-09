@@ -9,6 +9,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 import streamlit as st
+import joblib
 
 st.write("""
 # Deploy Modelo de Clasificacion 
@@ -25,12 +26,17 @@ y = df['cluster']
 # obtener datos de entrenamiento - datos de prueba (split)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=1, stratify=y)
 
+'''
 # pipeline
 from sklearn.pipeline import Pipeline
 clf_model = Pipeline([('tfidf_v', TfidfVectorizer(ngram_range=(1, 2))), ('clf_m', LinearSVC(C=1.5, loss='hinge'))])
 
 # entrenar modelo
 clf_model.fit(X_train, y_train)
+'''
+
+#Cargar Modelo Preentrenado
+clf_model = joblib.load('clf_model_v1.2.2.pkl')
 
 # inicializar resultado a vacio
 result = 2 
@@ -49,7 +55,7 @@ if modo == 'Seleccionar review de forma aleatoria':
 
     """)
 
-    st.write('Presiona TEST y selecciona una review aleatoria a evaluar entre los datos del set de prueba')
+    st.write('Presiona TEST y selecciona una review aleatoria entre los datos del set de prueba')
 
     button_test = st.button('Test')
 
@@ -74,7 +80,7 @@ else:
 
     """)
 
-    input_review = st.text_input('Ingresa la review a evaluar 👇')
+    input_review = st.text_input('Ingresa una nueva review 👇')
 
     if input_review:
         st.write('#### review:')
