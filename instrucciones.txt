@@ -51,4 +51,6 @@ GitHUB
 >>> git remote add origin "url del repo creado en github (https)"
 >>> git push -u origin main
 
+>>> git log --oneline
+
 >>> para subir archivos de gran tamaño: comprimir archivo zip
