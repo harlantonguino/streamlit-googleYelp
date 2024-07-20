@@ -1,0 +1,54 @@
+>>> crear entorno virtual: se crea automaticamente carpeta 'venv'
+python -m virtualenv venv 
+
+>>> activar entorno virtual
+.\venv\Scripts\activate
+
+>>> verificar si estamos dentro del entorno virtual 
+(venv) xxx
+
+>>> librerias instaladas entorno virtual
+pip list
+
+>> instalar librerias necesarias dentro del entorno virtual
+pip install xxx
+pip install xxx
+
+>>> crear archivo main.py a la misma altura de la carpeta 'venv'
+>>> crear archivo .gitignore a la misma altura de la carpeta 'venv'
+
+>>> ignorar carpeta 'venv' al hacer el commit en git: dentro del archivo .gitignore 
+/venv
+
+>>> crear archivo requirements.txt: indica las librerias usadas dentro del entorno virtual
+pip freeze > requirements.txt
+
+>>> eliminar de forma manual del archivo requirements.txt la version de las librerias
+
+>>> desactivar entorno virtual, vuelve a la raiz
+deactivate
+
+
+
+replicar en entorno virtual 
+>>> copiar main.py, requirements.txt en una nueva carpeta
+>>> realizar los pasos anteriores: crear, activar entorno virtual
+
+>>> instalar libreria en el nuevo entorno: replicar
+pip install -r .\requirements.txt ó pip install -r requirements.txt
+
+>>> comprobar
+pip list
+
+
+
+GitHUB
+
+>>> git config --global user.name 'harlantonguino'
+>>> git config --global user.email 'harlan.tonguino@hotmail.com'
+>>> git config --global core.editor "code --wait" #commit's desde VSC
+>>> git branch -m main
+>>> git remote add origin "url del repo creado en github (https)"
+>>> git push -u origin main
+
+>>> para subir archivos de gran tamaño: comprimir archivo zip
