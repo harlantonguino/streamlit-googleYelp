@@ -26,15 +26,17 @@ y = df['cluster']
 # obtener datos de entrenamiento - datos de prueba (split)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=1, stratify=y)
 
-## pipeline
+
+## opcion1 pipeline
 #from sklearn.pipeline import Pipeline
 #clf_model = Pipeline([('tfidf_v', TfidfVectorizer(ngram_range=(1, 2))), ('clf_m', LinearSVC(C=1.5, loss='hinge'))])
 
 ## entrenar modelo
 #clf_model.fit(X_train, y_train)
 
-#Cargar Modelo Preentrenado
+## opcion 2 cargar modelo preentrenado
 clf_model = joblib.load('clf_model_v1.2.2.pkl')
+
 
 # inicializar resultado a vacio
 result = 2 
