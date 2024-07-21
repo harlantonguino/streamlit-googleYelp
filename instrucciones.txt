@@ -45,7 +45,7 @@ pip list
 GitHUB
 
 >>> git config --global user.name 'harlantonguino'
->>> git config --global user.email 'harlan.tonguino@hotmail.com'
+>>> git config --global user.email '9009541+harlantonguino@users.noreply.github.com'
 >>> git config --global core.editor "code --wait" #commit's desde VSC
 >>> git branch -m main
 >>> git remote add origin "url del repo creado en github (https)"
